@@ -6,22 +6,25 @@ const connectDB = require("./config/db");
 const router = require("./routes");
 
 const app = express();
-app.use(
-  cors({
-    origin: process.env.FRONTEND_URL,
-    credentials: true,
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    allowedHeaders: "Content-Type,Authorization",
-  })
-);
+
+// تعريف خيارات CORS
+app.use(cors({
+  origin: process.env.FRONTEND_URL, // تأكد من تعريف هذا في ملف .env
+  credentials: true,
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  allowedHeaders: "Content-Type,Authorization",
+}));
+
 app.use(express.json());
 app.use(cookieParser());
 app.use("/api", router);
 
-const PORT = 8080 || process.env.PORT;
+// تعريف المنفذ من متغيرات البيئة أو القيمة الافتراضية
+const PORT = process.env.PORT || 8080;
+
+// الاتصال بقاعدة البيانات وبدء الخادم
 connectDB().then(() => {
   app.listen(PORT, () => {
-    console.log("connect to DB");
-    console.log("server is runing " + PORT);
+    console.log(`Server is running on port ${PORT}`);
   });
 });
