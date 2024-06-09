@@ -7,7 +7,8 @@ const router = require("./routes");
 
 const app = express();
 app.use(
-  options({
+  "*",
+  cors({
     origin: process.env.FRONTEND_URL,
     credentials: true,
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
