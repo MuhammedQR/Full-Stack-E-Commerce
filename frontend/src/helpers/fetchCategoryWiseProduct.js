@@ -1,4 +1,4 @@
-import SummaryApi from "../common";
+const { default: SummaryApi } = require("../common");
 
 const fetchCategoryWiseProduct = async (category) => {
   const response = await fetch(SummaryApi.categoryWiseProduct.url, {
@@ -10,7 +10,9 @@ const fetchCategoryWiseProduct = async (category) => {
       category: category,
     }),
   });
+
   const dataResponse = await response.json();
+
   return dataResponse;
 };
 
