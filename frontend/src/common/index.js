@@ -1,4 +1,4 @@
-const backendDomin = "https://full-stack-e-commerce-rho.vercel.app/";
+const backendDomin = process.env.REACT_APP_BACKEND_URL;
 
 const SummaryApi = {
   signUp: {

@@ -8,8 +8,10 @@ const router = require("./routes");
 const app = express();
 app.use(
   cors({
-    origin: "https://full-stack-e-commerce-yvvm.vercel.app/",
+    origin: process.env.FRONTEND_URL,
     credentials: true,
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    allowedHeaders: "Content-Type,Authorization",
   })
 );
 app.use(express.json());
