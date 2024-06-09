@@ -4,6 +4,8 @@ const cookieParser = require("cookie-parser");
 require("dotenv").config();
 const connectDB = require("./config/db");
 const router = require("./routes");
+const userSignUpController = require( "./controller/user/userSignUp" );
+const userSignInController = require( "./controller/user/userSignIn" );
 
 const app = express();
 app.use(
@@ -17,7 +19,11 @@ app.use(
 app.use(express.json());
 app.use(cookieParser());
 app.use("/api", router);
-app.post("/api", router);
+app.post(
+  "/api",
+  router.post("/signup", userSignUpController),
+  router.post("/signin", userSignInController)
+);
 app.get("/api", router);
 
 const PORT = 8080 || process.env.PORT;
