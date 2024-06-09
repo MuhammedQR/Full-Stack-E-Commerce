@@ -8,7 +8,9 @@ const router = require("./routes");
 const app = express();
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL,
+    origin:
+      "https://full-stack-e-commerce-rho.vercel.app" ||
+      process.env.FRONTEND_URL,
     credentials: true,
   })
 );
