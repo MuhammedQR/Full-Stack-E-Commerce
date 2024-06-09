@@ -8,9 +8,8 @@ const router = require("./routes");
 const app = express();
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL,
+    origin: "*",
     credentials: true,
-    methods: "POST",
   })
 );
 app.use(express.json());
