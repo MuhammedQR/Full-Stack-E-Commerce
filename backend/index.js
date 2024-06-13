@@ -6,18 +6,22 @@ const connectDB = require("./config/db");
 const router = require("./routes");
 
 const app = express();
-
-// Allow all origins for development or testing purposes (consider a more restrictive approach in production)
-app.use(cors({ origin: "*" }));
-
+app.use(
+  cors({
+    origin: process.env.FRONTEND_URL,
+    credentials: true,
+    methods: "POST,GET,HEAD,PUT,PATCH,DELETE",
+    allowedHeaders: "Content-Type,Authorization",
+  })
+);
 app.use(express.json());
 app.use(cookieParser());
-app.use("api", router);
+app.use("/api", router);
 
 const PORT = 8080 || process.env.PORT;
 connectDB().then(() => {
   app.listen(PORT, () => {
-    console.log("Connected to DB");
-    console.log("Server is running on port:", PORT);
+    console.log("connect to DB");
+    console.log("server is runing " + PORT);
   });
 });
