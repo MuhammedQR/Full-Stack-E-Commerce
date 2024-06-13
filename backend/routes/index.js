@@ -26,37 +26,37 @@ const paymentController = require("../controller/order/paymentController");
 const webhooks = require("../controller/order/webhook");
 const orderController = require("../controller/order/orderController");
 
-router.post("api/signup", userSignUpController);
-router.post("api/signin", userSignInController);
-router.get("api/user-details", authToken, userDetailsController);
-router.get("api/userLogout", userLogout);
+router.post("/signup", userSignUpController);
+router.post("/signin", userSignInController);
+router.get("/user-details", authToken, userDetailsController);
+router.get("/userLogout", userLogout);
 
 // admin panels
 
-router.get("api/all-user", authToken, allUsers);
-router.post("api/update-user", authToken, updateUser);
+router.get("/all-user", authToken, allUsers);
+router.post("/update-user", authToken, updateUser);
 
 // Product
-router.post("api/upload-product", authToken, uploadProductController);
-router.get("api/get-product", getProductController);
-router.post("api/update-product", authToken, updateProductController);
-router.get("api/get-categoryProduct", getCategoryProduct);
-router.post("api/category-product", getCategoryWiseProduct);
-router.post("api/product-details", getProductDetails);
-router.get("api/search", searchProduct);
-router.post("api/filter-product", filterProductController);
+router.post("/upload-product", authToken, uploadProductController);
+router.get("/get-product", getProductController);
+router.post("/update-product", authToken, updateProductController);
+router.get("/get-categoryProduct", getCategoryProduct);
+router.post("/category-product", getCategoryWiseProduct);
+router.post("/product-details", getProductDetails);
+router.get("/search", searchProduct);
+router.post("/filter-product", filterProductController);
 
 //user add To Cart
-router.post("api/addtocart", authToken, addToCartController);
-router.get("api/countAddToCartProduct", authToken, countAddToCartProduct);
-router.get("api/addToCartViewProduct", authToken, addToCartViewProduct);
-router.post("api/update-cart-product", authToken, updateAddToCartProduct);
-router.post("api/delete-cart-product", authToken, deleteAddToCartProduct);
+router.post("/addtocart", authToken, addToCartController);
+router.get("/countAddToCartProduct", authToken, countAddToCartProduct);
+router.get("/addToCartViewProduct", authToken, addToCartViewProduct);
+router.post("/update-cart-product", authToken, updateAddToCartProduct);
+router.post("/delete-cart-product", authToken, deleteAddToCartProduct);
 
 // payment and order
 
-router.post("api/checkout", authToken, paymentController);
-router.post("api/webhook", webhooks); // /api/webhook
-router.get("api/order-list", authToken, orderController);
+router.post("/checkout", authToken, paymentController);
+router.post("/webhook", webhooks); // /api/webhook
+router.get("/order-list", authToken, orderController);
 
 module.exports = router;
