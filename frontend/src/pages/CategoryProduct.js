@@ -3,7 +3,6 @@ import { useLocation, useNavigate, useParams } from "react-router-dom";
 import productCategory from "../helpers/productCategory";
 import VerticalCard from "../component/VerticalCard";
 import SummaryApi from "../common";
-import { Helmet } from "react-helmet-async";
 
 const CategoryProduct = () => {
   const [data, setData] = useState([]);
@@ -80,14 +79,6 @@ const CategoryProduct = () => {
   useEffect(() => {}, [sortBy]);
   return (
     <>
-      <Helmet>
-        <title>Category Product</title> {/* Set a descriptive title */}
-        <meta name="description" content=" Log In to Mo Store Now " />
-        {/* Add a relevant description */}
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        {/* Ensure proper mobile responsiveness */}
-        {/* Add additional meta tags as needed */}
-      </Helmet>
       <div className=" container mx-auto p-4">
         {/* desktop virsion */}
         <div className=" hidden lg:grid grid-cols-[200px,1fr]">

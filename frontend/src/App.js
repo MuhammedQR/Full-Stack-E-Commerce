@@ -46,12 +46,6 @@ function App() {
 
   return (
     <>
-      <Helmet>
-        <title>Mo Store</title> {/* Set a descriptive title */}
-        <meta name="description" content="" /> {/* Add a relevant description */}
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" /> {/* Ensure proper mobile responsiveness */}
-        {/* Add additional meta tags as needed */}
-      </Helmet>
       <Context.Provider
         value={{
           fetchUserDetails, // user details fetch
