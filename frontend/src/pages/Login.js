@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import SummaryApi from "../common";
 import { toast } from "react-toastify";
 import Context from "../context";
+import { Helmet } from "react-helmet-async";
 
 const Login = () => {
   const [showPassowrd, setShowPassword] = useState(false);
@@ -50,7 +51,22 @@ const Login = () => {
   };
 
   return (
-    <section id="login">
+    <>
+      <Helmet>
+        <title>Log In</title> {/* Set a descriptive title */}
+        <meta
+          name="description"
+          content=" Log In to Mo Store Now "
+        />
+        {/* Add a relevant description */}
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0"
+        />
+        {/* Ensure proper mobile responsiveness */}
+        {/* Add additional meta tags as needed */}
+      </Helmet>
+      <section id="login">
       <div className=" mx-auto container p-4">
         <div className=" bg-white  p-5  w-full max-w-sm mx-auto ">
           <div className="w-20 h-20 mx-auto">
@@ -111,6 +127,8 @@ const Login = () => {
         </div>
       </div>
     </section>
+    </>
+    
   );
 };
 

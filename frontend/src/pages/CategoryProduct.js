@@ -3,6 +3,7 @@ import { useLocation, useNavigate, useParams } from "react-router-dom";
 import productCategory from "../helpers/productCategory";
 import VerticalCard from "../component/VerticalCard";
 import SummaryApi from "../common";
+import { Helmet } from "react-helmet-async";
 
 const CategoryProduct = () => {
   const [data, setData] = useState([]);
@@ -78,80 +79,90 @@ const CategoryProduct = () => {
   };
   useEffect(() => {}, [sortBy]);
   return (
-    <div className=" container mx-auto p-4">
-      {/* desktop virsion */}
-      <div className=" hidden lg:grid grid-cols-[200px,1fr]">
-        {/* left side */}
-        <div className="bg-white p-2 min-h-[calc(100vh-120px)] overflow-y-scroll">
-          {/* sort by */}
-          <div className="">
-            <h3 className="text-base uppercase font-medium text-slate-500 border-b pb-3 border-slate-300">
-              Sort By
-            </h3>
-            <form className="text-sm flex flex-col gap-2 py-2">
-              <div className="flex items-center gap-3">
-                <input
-                  type="radio"
-                  name="sortBy"
-                  value={"asc"}
-                  checked={sortBy === "asc"}
-                  onChange={handleOnChangeSortBy}
-                />
-                <label>Price - Low to High</label>
-              </div>
-              <div className="flex items-center gap-3">
-                <input
-                  type="radio"
-                  name="sortBy"
-                  value={"dsc"}
-                  checked={sortBy === "dsc"}
-                  onChange={handleOnChangeSortBy}
-                />
-                <label>Price - High to Low</label>
-              </div>
-            </form>
+    <>
+      <Helmet>
+        <title>Category Product</title> {/* Set a descriptive title */}
+        <meta name="description" content=" Log In to Mo Store Now " />
+        {/* Add a relevant description */}
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        {/* Ensure proper mobile responsiveness */}
+        {/* Add additional meta tags as needed */}
+      </Helmet>
+      <div className=" container mx-auto p-4">
+        {/* desktop virsion */}
+        <div className=" hidden lg:grid grid-cols-[200px,1fr]">
+          {/* left side */}
+          <div className="bg-white p-2 min-h-[calc(100vh-120px)] overflow-y-scroll">
+            {/* sort by */}
+            <div className="">
+              <h3 className="text-base uppercase font-medium text-slate-500 border-b pb-3 border-slate-300">
+                Sort By
+              </h3>
+              <form className="text-sm flex flex-col gap-2 py-2">
+                <div className="flex items-center gap-3">
+                  <input
+                    type="radio"
+                    name="sortBy"
+                    value={"asc"}
+                    checked={sortBy === "asc"}
+                    onChange={handleOnChangeSortBy}
+                  />
+                  <label>Price - Low to High</label>
+                </div>
+                <div className="flex items-center gap-3">
+                  <input
+                    type="radio"
+                    name="sortBy"
+                    value={"dsc"}
+                    checked={sortBy === "dsc"}
+                    onChange={handleOnChangeSortBy}
+                  />
+                  <label>Price - High to Low</label>
+                </div>
+              </form>
+            </div>
+            {/* filter by */}
+            <div className="">
+              <h3 className="text-base uppercase font-medium text-slate-500 border-b pb-3 border-slate-300">
+                Category
+              </h3>
+              <form className="text-sm flex flex-col gap-2 py-2">
+                {productCategory.map((categoryName, index) => {
+                  return (
+                    <div className="flex item-center gap-3">
+                      <input
+                        type="checkbox"
+                        name="category"
+                        checked={selectCategory[categoryName?.value]}
+                        id={categoryName?.value}
+                        value={categoryName?.value}
+                        onChange={handleSelectCategory}
+                      />
+                      <label htmlFor={categoryName?.value}>
+                        {categoryName?.label}
+                      </label>
+                    </div>
+                  );
+                })}
+              </form>
+            </div>
           </div>
-          {/* filter by */}
-          <div className="">
-            <h3 className="text-base uppercase font-medium text-slate-500 border-b pb-3 border-slate-300">
-              Category
-            </h3>
-            <form className="text-sm flex flex-col gap-2 py-2">
-              {productCategory.map((categoryName, index) => {
-                return (
-                  <div className="flex item-center gap-3">
-                    <input
-                      type="checkbox"
-                      name="category"
-                      checked={selectCategory[categoryName?.value]}
-                      id={categoryName?.value}
-                      value={categoryName?.value}
-                      onChange={handleSelectCategory}
-                    />
-                    <label htmlFor={categoryName?.value}>
-                      {categoryName?.label}
-                    </label>
-                  </div>
-                );
-              })}
-            </form>
-          </div>
-        </div>
-        {/* right side (products) */}
-        <div className="px-4">
-          <div>
-            <p className=" font-medium text-slate-800 text-lg my-2">
-              Search Results : {data.length}
-            </p>
-          </div>
-          <div className="min-h-[calc(100vh-120px)] overflow-y-scroll max-h-[calc(100vh-120px)]">
-            {data.length !== 0 && (
-              <VerticalCard data={data} loading={loading} />
-            )}
+          {/* right side (products) */}
+          <div className="px-4">
+            <div>
+              <p className=" font-medium text-slate-800 text-lg my-2">
+                Search Results : {data.length}
+              </p>
+            </div>
+            <div className="min-h-[calc(100vh-120px)] overflow-y-scroll max-h-[calc(100vh-120px)]">
+              {data.length !== 0 && (
+                <VerticalCard data={data} loading={loading} />
+              )}
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

@@ -9,6 +9,8 @@ import SummaryApi from "./common";
 import Context from "./context";
 import { useDispatch } from "react-redux";
 import { setUserDetails } from "./store/userSlice";
+import { Helmet } from "react-helmet-async"; // Import Helmet
+
 function App() {
   const dispatch = useDispatch();
   const [cartProductCount, setCartProductCount] = useState(0);
@@ -23,7 +25,6 @@ function App() {
     if (dataApi.success) {
       dispatch(setUserDetails(dataApi.data));
     }
-    // console.log( "data User",dataResponse);
   };
 
   const fetchUserAddToCart = async () => {
@@ -42,11 +43,18 @@ function App() {
     /* user details Cart product */
     fetchUserAddToCart();
   }, []);
+
   return (
     <>
+      <Helmet>
+        <title>Mo Store</title> {/* Set a descriptive title */}
+        <meta name="description" content="" /> {/* Add a relevant description */}
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" /> {/* Ensure proper mobile responsiveness */}
+        {/* Add additional meta tags as needed */}
+      </Helmet>
       <Context.Provider
         value={{
-          fetchUserDetails /* user details fetch*/,
+          fetchUserDetails, // user details fetch
           cartProductCount, // current user add to cart product count
           fetchUserAddToCart,
         }}
